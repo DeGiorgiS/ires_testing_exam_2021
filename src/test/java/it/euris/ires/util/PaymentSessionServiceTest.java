@@ -97,16 +97,26 @@ public class PaymentSessionServiceTest {
         }
     }
 
-    //incompleto
+
     @Test
     void givenPaySessionWhenSavePaySessionThenShouldSave() {
         //arrange
         PaySession paySession = new PaySession();
 
         //act
-        pss.savePaySession(paySession);
+        try {
+            pss.savePaySession(paySession);
+        }
+        catch (PaySessionException pse){
+            pse.getMessage();
+        }
 
         //assert
-        Mockito.verify(paySessionRepository).save(paySession);
+        try {
+            Mockito.verify(paySessionRepository).save(paySession);
+        }
+        catch (IllegalAccessException iae){
+            iae.getMessage();
+        }
     }
 }
