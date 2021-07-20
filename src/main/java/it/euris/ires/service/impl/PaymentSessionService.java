@@ -60,10 +60,11 @@ public class PaymentSessionService implements IPaymentSessionService {
 		return amount.sum(amounts);
 	}
 
+	//tolto il not (operatore !) dall'if, infatti voglio che se trova l'ID mi ritorni il valore.
 	@Override
 	public PaySession getShoppingCart(String paySessionId) throws PaySessionException {
 		Optional<PaySession> paySessionFound = paySessionRepository.findById(UUID.fromString(paySessionId));
-		if (!paySessionFound.isPresent()) {
+		if (paySessionFound.isPresent()) {
 			return paySessionFound.get();
 		} else {
 			throw new PaySessionException(String.format("Pay-session id %s does not exist", paySessionId));
