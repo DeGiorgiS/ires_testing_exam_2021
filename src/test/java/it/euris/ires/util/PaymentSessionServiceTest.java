@@ -96,4 +96,17 @@ public class PaymentSessionServiceTest {
             pse.getMessage();
         }
     }
+
+    //incompleto
+    @Test
+    void givenPaySessionWhenSavePaySessionThenShouldSave() {
+        //arrange
+        PaySession paySession = new PaySession();
+
+        //act
+        pss.savePaySession(paySession);
+
+        //assert
+        Mockito.verify(paySessionRepository).save(paySession);
+    }
 }
